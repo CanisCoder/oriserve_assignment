@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriserve </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin: 100px auto 20px; /* Adds space below header */
+        }
+
+        .employee-info {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .employee-info span {
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .extra-info {
+            margin-top: 20px;
+            display: none;
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Oriserve : Convert Your Visitors to
+            Loyal Customers</h1>
+    </header>
+
+    <div class="container">
+        <p>We are a company focused on providing the best services to our clients.</p>
+        <div class="employee-info">
+            <p><span>Employee Name:</span> Anand</p>
+            <p><span>Role:</span> DevOps Engineer</p>
+        </div>
+        <button onclick="toggleInfo()">More About Anand</button>
+        <div class="extra-info" id="extraInfo">
+            <p>Anand is a skilled DevOps Engineer, experience in cloud infrastructure and automation.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleInfo() {
+            var extraInfo = document.getElementById('extraInfo');
+            if (extraInfo.style.display === 'none' || extraInfo.style.display === '') {
+                extraInfo.style.display = 'block';
+            } else {
+                extraInfo.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
