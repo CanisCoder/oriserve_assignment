@@ -10,7 +10,7 @@
   - Created the script files (`install_nginx.sh`, `start_nginx.sh`) to automate the installation and startup of NGINX.
 
 **2. Push Files to GitHub**
-
+    [https://github.com/CanisCoder/oriserve_assignment/tree/main]
 - **Objective**: Push the created files to GitHub for version control and easy access during deployment.
 - **Steps**:
   - Initialized a Git repository in the project folder.
