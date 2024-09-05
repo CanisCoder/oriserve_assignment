@@ -1,67 +1,77 @@
-### Problem Statement 1
+### Oriserve Problem statement 1
 ### Step-by-Step Documentation
 
-**1. Setup Jenkins Pipeline**
+**1. Create Project Files**
 
-- **Objective**: Set up a Jenkins pipeline to automate the deployment process.
+- **Objective**: Set up the initial files required for the application deployment.
 - **Steps**:
-  1. Installed Jenkins and configured necessary plugins for the pipeline.
-  2. Created a new pipeline job in Jenkins.
-  3. Configured the pipeline script to automate tasks, including cloning the repository, installing NGINX, building the application, packaging files, uploading to S3, and deploying via AWS CodeDeploy.
+  - Created the `index.html` file to serve as the main web page of the application.
+  - Created the `appspec.yml` file to define the deployment instructions for AWS CodeDeploy.
+  - Created the script files (`install_nginx.sh`, `start_nginx.sh`) to automate the installation and startup of NGINX.
 
-**2. Clone Repository**
+**2. Push Files to GitHub**
 
-- **Objective**: Clone the GitHub repository containing the project files.
+- **Objective**: Push the created files to GitHub for version control and easy access during deployment.
 - **Steps**:
-  - Configured the Jenkins pipeline to clone the repository using the `git` step with the specified branch and URL.
+  - Initialized a Git repository in the project folder.
+  - Added the files, committed the changes, and pushed them to the GitHub repository.
 
-**3. Install NGINX**
+**3. Clone the Repository in Jenkins Pipeline**
+
+- **Objective**: Clone the GitHub repository in the Jenkins pipeline for automated deployment.
+- **Steps**:
+  - Configured the Jenkins pipeline to use the `git` command to clone the repository during the pipeline execution.
+
+**4. Setup Jenkins Pipeline**
+
+- **Objective**: Automate the deployment process using Jenkins.
+- **Steps**:
+  - Installed Jenkins and configured the necessary plugins.
+  - Created a new pipeline job in Jenkins and defined the pipeline script to automate the deployment.
+
+**5. Install NGINX**
 
 - **Objective**: Install NGINX on the server to serve the application.
 - **Steps**:
-  - Updated the package manager and installed NGINX using shell commands.
+  - Used shell commands in the Jenkins pipeline to update the package manager and install NGINX.
 
-**4. Build and Copy Files**
+**6. Build and Copy Files**
 
 - **Objective**: Build the application and copy the required files to the NGINX directory.
 - **Steps**:
-  - Copied the `index.html` file to the `/var/www/html/` directory using shell commands.
+  - Used shell commands to copy the `index.html` file to the `/var/www/html/` directory.
 
-**5. Package and Upload to S3**
+**7. Package and Upload to S3**
 
 - **Objective**: Package the application files and upload them to an S3 bucket for deployment.
 - **Steps**:
-  - Zipped the project files and used AWS CLI commands to upload the package to the specified S3 bucket.
+  - Compressed the project files into a zip archive.
+  - Uploaded the package to the specified S3 bucket using AWS CLI commands.
 
-**6. Configure AWS CodeDeploy**
+**8. Configure AWS CodeDeploy**
 
-- **Objective**: Set up AWS CodeDeploy for automated deployments to EC2 instances.
+- **Objective**: Set up AWS CodeDeploy to manage deployments to EC2 instances.
 - **Steps**:
   1. **Create an Application**:
-     - Navigate to AWS CodeDeploy in the AWS Management Console.
-     - Created a new application, selecting "EC2/On-premises" as the compute platform.
+     - Created a new application in AWS CodeDeploy and selected "EC2/On-premises" as the compute platform.
   2. **Create a Deployment Group**:
-     - Configured a new deployment group for the application.
-     - Specified the deployment type as "In-place" and selected the required EC2 instances using their tags.
-     - Associated the Auto Scaling group to allow instances to automatically join the deployment group during scaling events.
+     - Configured a deployment group with the correct EC2 instances, load balancer, and auto-scaling group settings.
   3. **Configure Load Balancer**:
-     - Integrated an Application Load Balancer (ALB) to route traffic to the healthy instances during deployment.
-     - Configured health checks to ensure smooth traffic switching between instances.
+     - Integrated an Application Load Balancer (ALB) to distribute traffic and perform health checks on the instances.
   4. **Set Up Auto Scaling Group**:
-     - Created an Auto Scaling group with the desired capacity and scaling policies.
-     - Linked the Auto Scaling group to the deployment group, ensuring instances are automatically added to CodeDeploy during scaling.
+     - Created an Auto Scaling group to manage instance scaling and ensure availability during deployments.
 
-**7. Deploy to AWS CodeDeploy**
+**9. Deploy to AWS CodeDeploy**
 
-- **Objective**: Deploy the application to the target EC2 instances using AWS CodeDeploy.
+- **Objective**: Deploy the packaged application to the target EC2 instances.
 - **Steps**:
-  - Created a deployment using AWS CodeDeploy with the application name, deployment group, and S3 package details.
+  - Executed AWS CLI commands in the Jenkins pipeline to create a deployment using AWS CodeDeploy.
 
-**8. Install AWS CodeDeploy Agent**
+**10. Install AWS CodeDeploy Agent**
 
-- **Objective**: Ensure the CodeDeploy agent is installed and running on the EC2 instance.
+- **Objective**: Ensure the CodeDeploy agent is running on the EC2 instances for communication with AWS CodeDeploy.
 - **Steps**:
-  - Installed the CodeDeploy agent using the necessary commands, started the service, and verified its status.
+  - Installed the CodeDeploy agent on the EC2 instances, configured it, and verified that it was running correctly.
 
 ### Major Challenges Faced and Resolutions
 
