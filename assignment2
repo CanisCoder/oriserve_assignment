@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Set the base directory
+BASE_DIR="projects"
+
+# Create the base directory if it doesn't exist
+mkdir -p "$BASE_DIR"
+
+# Create example folder structure as described
+mkdir -p "$BASE_DIR/facebook"
+mkdir -p "$BASE_DIR/google/oriserve"
+mkdir -p "$BASE_DIR/meta/oriserve"
+mkdir -p "$BASE_DIR/oracle"
+
+# Find all directories named "oriserve" under the projects directory
+find "$BASE_DIR" -type d -name "oriserve" | while read -r dir; do
+    # Create the test.txt file inside each oriserve folder
+    touch "$dir/test.txt"
+    echo "Created test.txt in $dir"
+done
